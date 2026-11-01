@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/omarchy/omarchy/main/schemas/plugin.json",
+  "schemaVersion": 1,
+  "id": "lipi.stocks",
+  "name": "Stocks",
+  "version": "1.0.0",
+  "author": "lipi",
+  "license": "MIT",
+  "description": "A stock portfolio widget for the bar: live quotes for the tickers you own, a range chart, and today's and unrealized gains, with an inline search to add holdings.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Stocks",
+    "description": "Live prices and performance for your portfolio. Click the bar to open the panel, search a ticker, then set shares and average cost to track gains. Tickers with zero shares are watch-only.",
+    "category": "Productivity",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "barDisplay": "percent",
+      "refreshSeconds": 60,
+      "showIcon": true,
+      "showSparklines": true
+    },
+    "schema": [
+      {
+        "key": "barDisplay",
+        "type": "enum",
+        "label": "Bar readout",
+        "options": [
+          "percent",
+          "change",
+          "value",
+          "icon"
+        ],
+        "defaultValue": "percent",
+        "description": "What the bar shows: today's portfolio move in percent, the move in money, the total market value, or just the icon."
+      },
+      {
+        "key": "refreshSeconds",
+        "type": "integer",
+        "label": "Refresh interval (seconds)",
+        "min": 30,
+        "max": 600,
+        "step": 30,
+        "defaultValue": 60,
+        "description": "How often live quotes are re-fetched from Yahoo Finance."
+      },
+      {
+        "key": "showIcon",
+        "type": "boolean",
+        "label": "Show icon",
+        "defaultValue": true,
+        "description": "Show the chart glyph before the bar readout."
+      },
+      {
+        "key": "showSparklines",
+        "type": "boolean",
+        "label": "Show sparklines",
+        "defaultValue": true,
+        "description": "Draw a small intraday chart for every holding in the panel."
+      }
+    ]
+  }
+}
